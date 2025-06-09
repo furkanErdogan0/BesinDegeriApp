@@ -14,6 +14,7 @@ jobs:
       - name: Coverity Scan Analizi
         uses: vapier/coverity-scan-action@v1.8.0        # v1 veya v1.8.0 kullanın
         with:
+          project: 'furkanErdogan0/BesinDegeriUygulamasi'
           email: ${{ secrets.COVERITY_SCAN_EMAIL }}     # Coverity Scan hesabınızdaki e-posta
           token: ${{ secrets.COVERITY_SCAN_TOKEN }}     # Proje token’ı
           build_language: 'java'                        # Kotlin/Android için 'java'

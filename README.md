@@ -1,5 +1,14 @@
 BesinDegeriUygulamasi
 
+Coverity:
+
+<a href="https://scan.coverity.com/projects/furkanerdogan0-besindegeriuygulamasi">
+  <img alt="Coverity Scan Build Status"
+       src="https://scan.coverity.com/projects/31885/badge.svg"/>
+</a>
+
+
+  
 Bu Projede Kotlin ile Retrofit kullanarak bir API'den veri çekme, Kotlin Coroutines yapısı ve MVVM tasarım deseni konularında deneyim kazanmak için bir mobil uygulama yapılmıştır.
 
 Projede:
@@ -22,6 +31,9 @@ Projede:
 
 * Fragmentlar arası geçiş için **Navigation Component** kullanılmıştır.
 
+
+
+
 <img src="https://github.com/user-attachments/assets/ae8c9a51-0068-4e31-bf08-2cd8e925405b" alt="Uygulama Ekran Görüntüsü 1" width="170">
 
 MVVM Yapısı
@@ -38,5 +50,15 @@ Uygulama içi ekran görüntüleri :
 <img src="https://github.com/user-attachments/assets/8fa9c7ad-fab7-44eb-9827-aba892be5b9e" alt="Uygulama Ekran Görüntüsü 1" width="170">
 <img src="https://github.com/user-attachments/assets/24856ecf-5564-40a5-bcd2-a8d5501c715c" alt="Uygulama Ekran Görüntüsü 1" width="170">
 <img src="https://github.com/user-attachments/assets/a73ca71a-bf9c-4284-b85a-a9278706753a" alt="Uygulama Ekran Görüntüsü 1" width="170">
+
+
+
+
+
+
+
+
+
+
 
 

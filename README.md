@@ -1,13 +1,5 @@
 BesinDegeriUygulamasi
 
-Coverity:
-
-<a href="https://scan.coverity.com/projects/furkanerdogan0-besindegeriuygulamasi">
-  <img alt="Coverity Scan Build Status"
-       src="https://scan.coverity.com/projects/31885/badge.svg"/>
-</a>
-
-
   
 Bu Projede Kotlin ile Retrofit kullanarak bir API'den veri çekme, Kotlin Coroutines yapısı ve MVVM tasarım deseni konularında deneyim kazanmak için bir mobil uygulama yapılmıştır.
 

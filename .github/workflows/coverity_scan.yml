@@ -1,37 +1,76 @@
-name: Coverity Scan Automation
+# İş akışının adı
+name: Coverity Scan
 
+# =========================================================================
+# TETİKLEYİCİLER (TRIGGERS)
+# Ne zaman çalışacağını belirler. Mevcut hali gayet iyi.
+# =adece 'main' veya 'master' branch'lerine yapılan değişikliklerde çalışır.
+# =========================================================================
 on:
   push:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  # ÖNERİ: Manuel olarak da tetikleyebilmek için 'workflow_dispatch' ekleyebilirsiniz.
+  # Bu, Actions sekmesinden "Run workflow" butonu ile çalıştırmanıza olanak tanır.
+  workflow_dispatch:
 
 jobs:
-  coverity-scan-job:
+  # =========================================================================
+  # İŞ (JOB) TANIMI
+  # =========================================================================
+  scan: # "coverity-scan-job" yerine daha kısa ve anlaşılır bir isim kullanabiliriz.
     runs-on: ubuntu-latest
 
     steps:
+      # ---------------------------------------------------------------------
+      # Adım 1: Kaynak Kodu İndirme
+      # ÖNERİ: 'fetch-depth: 0' eklemek, Coverity'nin tam git geçmişini
+      # analiz etmesini sağlar, bu da bazı ek kontroller için faydalı olabilir.
+      # ---------------------------------------------------------------------
       - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Setup Java
-        uses: actions/setup-java@v3
+        uses: actions/checkout@v4 # En son stabil sürüm v4'tür, güncelleyelim.
         with:
-          distribution: 'temurin'
+          fetch-depth: 0
+
+      # ---------------------------------------------------------------------
+      # Adım 2: Java Ortamını Kurma
+      # Ayarlarınız doğru, bir değişiklik gerekmiyor.
+      # ---------------------------------------------------------------------
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4 # En son stabil sürüm v4'tür, güncelleyelim.
+        with:
           java-version: '17'
-      
+          distribution: 'temurin'
+
+      # ---------------------------------------------------------------------
+      # Adım 3: Gradle Wrapper'a İzin Verme
+      # Ayarlarınız doğru, bir değişiklik gerekmiyor.
+      # ---------------------------------------------------------------------
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
 
+      # ---------------------------------------------------------------------
+      # Adım 4: Coverity Taramasını Çalıştırma
+      # 'uses' satırını daha sağlam hale getirelim.
+      # @v2 versiyonu doğrudur, şimdilik değiştirmeye gerek yok.
+      # ---------------------------------------------------------------------
       - name: Run Coverity Scan
         uses: synopsys-sig/coverity-scan-action@v2
         with:
+          # Parametreleriniz zaten doğru. Sadece yorumlar ekledim.
+          
+          # Coverity'nin ücretsiz tarama sunucusu (değiştirilmemeli)
           coverity-url: https://scan.coverity.com
 
+          # Proje adı (GitHub deposu adını otomatik alır, örn: "kullanici/proje")
           project-name: ${{ github.repository }}
 
+          # Analiz sonuçlarının gönderileceği akış adı (genellikle proje adıyla aynı)
           stream-name: ${{ github.repository }}
 
+          # Coverity'nin analiz için kullanacağı derleme komutu
           build-command: './gradlew assembleDebug'
 
+          # GitHub Secrets'dan alınan güvenli token
           coverity-scan-token: ${{ secrets.COVERITY_SCAN_TOKEN }}

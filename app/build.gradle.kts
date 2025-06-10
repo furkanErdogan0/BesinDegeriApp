@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.furkanerdogan.besindegeriuygulamasi"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.furkanerdogan.besindegeriuygulamasi"
